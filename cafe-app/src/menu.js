@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import menu from './data'
+import React from 'react'
 
-const Items = () => {
-    const [items, setItems] = useState(menu);
+
+const Menu = ({items}) => {
 
     return (
         <div className='container'>
             {items.map((item) => {
-                const {id, title, category, img, price, desc} = item;
+                const {id, title, img, price, desc} = item;
                 return <article key={id}>
                     <img src={img} alt="" />
                     <div className='item-info'>
@@ -21,4 +20,4 @@ const Items = () => {
     )
 }
 
-export default Items
+export default Menu
