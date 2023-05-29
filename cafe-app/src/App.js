@@ -1,71 +1,37 @@
 import React, { useState } from "react";
 import Menu from "./menu";
-import menu from "./data";
-import Category from "./categories";
+import items from "./data";
+//import Category from "./categories";
+
+const allCategories = ['all', ...new Set(items.map((item) => item.category))]
+
+console.log(allCategories);
+
 
 function App() {
-  const [menuItems, setMenuItems] = useState(menu);
-  const [categoryItems, setCategoryItems] = useState([]);
+  //create and control itemsitems
+  const [menuItems, setMenuItems] = useState(items);
 
-  const [isAll, setIsAll] = useState(false);
-  const [isBreakfast, setIsBreakfast] = useState(false);
-  const [isLunch, setIsLunch] = useState(false);
-  const [isShakes, setIsShakes] = useState(false);
+  //create and control categories
+  //const [categories, setCategories] = useState(allCategories);
 
-  const categorise = (category) => {
-    const newList = menu.filter((item) => category === item.category);
-    // return isBreakfast? ('breakfast'):('');
-    setCategoryItems(newList);
+
+  //return items grouped into categories
+  const filterItems = (category) => {
+    if(category === 'all'){
+      return;
+    }
+    const newList = items.filter((item) => item.category === category);
+    setMenuItems(newList);
   };
-
-
 
   return (
     <main>
       <h2>Yelo Cafe</h2>
-      <div className="switch-category">
-        <button
-          onClick={() => {
-            setIsAll(true);
-            setMenuItems(menu);
-          }}
-        >
-          all
-        </button>
-        <button
-          onClick={() => {
-            setIsBreakfast(true);
-            categorise("breakfast");
-            // setCategoryItems()
-          }}
-        >
-          breakfast
-        </button>
-        <button
-          onClick={() => {
-            setIsLunch(true);
-            categorise("lunch");
-            // setCategoryItems()
-          }}
-        >
-          lunch
-        </button>
-        <button
-          onClick={() => {
-            setIsShakes(true);
-            categorise("shakes");
-            // setCategoryItems()
-          }}
-        >
-          shakes
-        </button>
-      </div>
-      {isAll && isBreakfast && isLunch && isShakes ? (
-        <Category categoryItems={categoryItems}></Category>
-      ) : (
-        <Menu items={menuItems}></Menu>
-      )}
-      {}
+      
+      {/* <Category categories={categories} filterItems={filterItems}/> */}
+      <Menu items={menuItems}></Menu>
+
     </main>
   );
 }
