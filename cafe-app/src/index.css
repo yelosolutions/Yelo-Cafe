@@ -39,7 +39,7 @@ main{
   text-transform: capitalize;
 }
 
-.category-btns{
+.btn-container{
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -47,7 +47,7 @@ main{
   padding: 6px;
 }
 
-.category-btns button{
+.btn-container button{
   padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
